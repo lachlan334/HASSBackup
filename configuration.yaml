@@ -1,0 +1,210 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 126.00
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Australia/Melbourne
+
+# Customisation
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+
+# Groups
+group: !include group.yaml
+
+# Enables iOS app features
+ios:
+
+# HTTP component
+http:
+  api_password: !secret http_password
+  server_port: 443
+  ssl_certificate: /etc/letsencrypt/live/lglen.duckdns.org/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/lglen.duckdns.org/privkey.pem
+  base_url: lglen.duckdns.org
+
+# Checks for available updates
+updater:
+
+recorder:
+  purge_interval: 1
+  purge_keep_days: 2
+
+# Discover some devices automatically
+discovery:
+
+# Enables support for tracking state changes over time.
+#history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  platform: google
+
+# Configuration menu in the side panel
+config:
+
+# Weather from DarkSky
+sensor darksky:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    monitored_conditions:
+      - temperature
+      - humidity
+      - cloud_cover
+
+sensor ssl_cert_expiry:
+  - platform: command_line
+    unit_of_measurement: days
+    scan_interval: 10800
+    command: "ssl-cert-check -b -c /etc/letsencrypt/live/lglen.duckdns.org/cert.pem | awk '{ print $NF }'"
+
+sensor pi_status:
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: memory_use_percent
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: processor_use
+      - type: last_boot
+      - type: since_last_boot
+
+# MQTT setup for Owntracks
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+  client_id: home-assistant
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+google_assistant:
+  project_id: homehass-2cd30
+  client_id: !secret google_assistant_client_id
+  access_token: !secret google_assistant_access_token
+  exposed_domains:
+    - light
+
+# Presence detection
+device_tracker:
+  - platform: owntracks
+
+#input_boolean:
+  #lachlan_home:
+    #name: Lachlan Home
+    #initial: 'on'
+  #ashlee_home:
+    #name: Ashlee Home
+    #initial: 'on'
+
+# All automation
+automation: !include automation.yaml
+
+# Chromecast
+media_player livingroom_chromecast:
+  - platform: cast
+    host: 192.168.0.2
+
+media_player bedroom_chromecast:
+  - platform: cast
+    host: 192.168.0.6
+
+media_player google_home:
+  - platform: cast
+    host: 192.168.0.7
+
+# Shell commands
+shell_command:
+  # Shuts down cougar. Used for WOL turn_off
+  shutdown_cougar: 'ssh 192.168.0.9 sudo poweroff'
+
+# Speedtest
+sensor speedtest:
+  - platform: speedtest
+    minute:
+      - 17
+      - 47
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
+script: !include script.yaml
+
+# WeMo
+wemo:
+  static:
+    - 192.168.0.90
+
+# Scenes
+scene:
+  - name: Bedroom dim
+    entities:
+      light.bedroom:
+        to: on
+        brightness: 25
+
+# Input booleans
+input_boolean:
+  sexy_time:
+    name: Sexy Time on
+    initial: off
+
+# Notify
+notify:
+  - platform: pushbullet
+    name: Pushbullet
+    api_key: !secret pushbullet_api_key
+
+# Input sliders
+input_number:
+  bedroom_brightness:
+    name: Brightness
+    initial: 255
+    min: 1
+    max: 255
+    step: 63
+  theatre_brightness:
+    name: Brightness
+    initial: 255
+    min: 1
+    max: 255
+    step: 63
+
+# Pi Hole stats
+sensor pi-hole:
+  - platform: pi_hole
+    host: localhost:8090
+    monitored_conditions:
+      - dns_queries_today
+      - ads_blocked_today
+      - ads_percentage_today
+
+# Darkness sensor
+sensor darkness:
+  - platform: template
+    sensors:
+      is_it_dark:
+        friendly_name: 'Is it dark?'
+        value_template: >
+          {% if (states.sun.sun.attributes.elevation | int < 30) %}true
+          {% elif ( (states.sun.sun.attributes.elevation | int < 40) and (states.sensor.dark_sky_cloud_coverage.state | int > 50)) %}true
+          {% elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) %}true
+          {% else %}false
+          {% endif %}

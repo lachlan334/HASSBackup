@@ -1,0 +1,43 @@
+switch.cougar:
+  friendly_name: Computer
+  icon: mdi:monitor
+sensor.speedtest_download:
+  friendly_name: Download
+  icon: mdi:download
+sensor.speedtest_upload:
+  friendly_name: Upload
+  icon: mdi:upload
+sensor.speedtest_ping:
+  friendly_name: Ping
+  icon: mdi:radio-tower
+sensor.disk_use_:
+  friendly_name: Disk Use
+sensor.sent_eth0:
+  friendly_name: Sent
+sensor.received_eth0:
+  friendly_name: Received
+sensor.cpu_use:
+  icon: mdi:raspberrypi
+script.manual_speedtest:
+  icon: mdi:refresh
+light.hallway_1:
+  friendly_name: Front
+light.hallway_2:
+  friendly_name: Back
+script.sexy_time:
+  icon: mdi:heart
+script.fishtank:
+  icon: mdi:fish
+script.fireplace:
+  icon: mdi:fire
+sensor.pihole_ads_blocked_today:
+  friendly_name: Ads Blocked Today
+sensor.pihole_dns_queries_today:
+  friendly_name: DNS Queries Today
+  icon: mdi:help
+sensor.pihole_ads_percentage_blocked_today:
+  friendly_name: Percentage Blocked Today
+  icon: mdi:percent
+group.lights_list:
+  icon: mdi:lightbulb
+  hidden: true

@@ -1,0 +1,81 @@
+default_view:
+  name: Home
+  view: yes
+  entities:
+    - device_tracker.ashlee_ashlee
+    - device_tracker.lachlan_lachlan
+    - group.bedroom
+    - group.hallway
+    - group.theatre
+    - group.outside
+bedroom:
+  name: Bedroom
+  entities:
+    - light.bedroom
+    - input_number.bedroom_brightness
+hallway:
+  name: Hallway
+  entities:
+    - light.hallway_1
+    - light.hallway_2
+theatre:
+  name: Theatre
+  control: hidden
+  entities:
+    - light.theatre
+    # - input_number.theatre_brightness
+    # - switch.cougar
+pi_status:
+  name: Server Status
+  entities:
+    - sensor.cpu_use
+    - sensor.ram_use
+    - sensor.disk_use_
+    - sensor.sent_eth0
+    - sensor.received_eth0
+    - sensor.last_boot
+    - sensor.since_last_boot
+speedtest:
+  name: Internet Connection
+  entities:
+    - script.manual_speedtest
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+scenes:
+  name: Scenes
+  view: yes
+  entities:
+    - group.scene_switches
+scene_switches:
+  name: Scenes
+  control: hidden
+  entities:
+    - script.fireplace
+    - script.fishtank
+    - script.sexy_time
+system:
+  name: System
+  view: yes
+  entities:
+    - group.pi_status
+    - group.speedtest
+    - group.pihole
+pihole:
+  name: Pi Hole
+  entities:
+    - sensor.pihole_ads_blocked_today
+    - sensor.pihole_dns_queries_today
+    - sensor.pihole_ads_percentage_blocked_today
+outside:
+  name: Outside
+  entities:
+    - light.porch
+# lights_list:
+#   name: All Lights
+#   entities:
+#     - light.bedroom
+#     - light.hallway_1
+#     - light.hallway_2
+#     - light.theatre
+#     - light.porch
