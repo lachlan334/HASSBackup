@@ -1,0 +1,58 @@
+# Weather from DarkSky
+- platform: darksky
+  name: darksky
+  api_key: !secret darksky_api_key
+  monitored_conditions:
+    - temperature
+    - humidity
+    - cloud_cover
+# Check SSL cert expiry
+- platform: command_line
+  name: ssl_cert_expirty
+  unit_of_measurement: days
+  scan_interval: 10800
+  command: !secret ssl_cert_expiry_command
+# Raspberry Pi system stats
+- platform: systemmonitor
+  name: pi_status
+  resources:
+    - type: disk_use_percent
+      arg: /
+    - type: memory_use_percent
+    - type: network_in
+      arg: eth0
+    - type: network_out
+      arg: eth0
+    - type: processor_use
+    - type: last_boot
+    - type: since_last_boot
+# Internet speedtest
+- platform: speedtest
+  name: speedtest
+  minute:
+    - 17
+    - 47
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+# Pi-Hole stats
+- platform: pi_hole
+  name: pi-hole
+  host: localhost:8090
+  monitored_conditions:
+    - dns_queries_today
+    - ads_blocked_today
+    - ads_percentage_today
+
+- platform: template
+  sensors:
+    # Darkness sensor
+    is_it_dark:
+      friendly_name: 'Is it dark?'
+      value_template: >
+        {% if (states.sun.sun.attributes.elevation | int < 30) %}true
+        {% elif ( (states.sun.sun.attributes.elevation | int < 40) and (states.sensor.dark_sky_cloud_coverage.state | int > 50)) %}true
+        {% elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) %}true
+        {% else %}false
+        {% endif %}
