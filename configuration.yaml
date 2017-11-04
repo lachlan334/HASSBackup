@@ -27,9 +27,9 @@ ios:
 http:
   api_password: !secret http_password
   server_port: 443
-  ssl_certificate: /etc/letsencrypt/live/lglen.duckdns.org/fullchain.pem
-  ssl_key: /etc/letsencrypt/live/lglen.duckdns.org/privkey.pem
-  base_url: lglen.duckdns.org
+  ssl_certificate: !secret ssl_cert
+  ssl_key: !secret ssl_key
+  base_url: !secret base_url
 
 # Checks for available updates
 updater:
@@ -70,7 +70,7 @@ sensor ssl_cert_expiry:
   - platform: command_line
     unit_of_measurement: days
     scan_interval: 10800
-    command: "ssl-cert-check -b -c /etc/letsencrypt/live/lglen.duckdns.org/cert.pem | awk '{ print $NF }'"
+    command: !secret ssl_cert_expiry_command
 
 sensor pi_status:
   - platform: systemmonitor
