@@ -1,12 +1,9 @@
 # Living Room Chromecast
 - platform: cast
   host: 192.168.0.2
-  name: livingroom_chromecast
 # Bedroom Chromecast
 - platform: cast
   host: 192.168.0.6
-  name: bedroom_chromecast
 # Google Home
 - platform: cast
   host: 192.168.0.7
-  name: google_home

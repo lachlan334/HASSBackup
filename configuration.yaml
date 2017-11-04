@@ -10,19 +10,14 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Australia/Melbourne
-
 # Customisation
   customize: !include customize.yaml
-
 # Enables the frontend
 frontend:
-
 # Groups
 group: !include group.yaml
-
 # Enables iOS app features
 ios:
-
 # HTTP component
 http:
   api_password: !secret http_password
@@ -30,34 +25,22 @@ http:
   ssl_certificate: !secret ssl_cert
   ssl_key: !secret ssl_key
   base_url: !secret base_url
-
 # Checks for available updates
 updater:
   include_used_components: true
-
-recorder:
-  purge_interval: 1
-  purge_keep_days: 2
-
 # Discover some devices automatically
 discovery:
-
 # View all events in a logbook
 logbook:
-
 # Track the sun
 sun:
-
 # Text to speech
 tts:
   platform: google
-
 # Configuration menu in the side panel
 config:
-
 # Sensors
 sensor: !include sensor.yaml
-
 # MQTT setup for Owntracks
 mqtt:
   broker: 127.0.0.1
@@ -65,7 +48,6 @@ mqtt:
   client_id: home-assistant
   username: !secret mqtt_username
   password: !secret mqtt_password
-
 # Google Assistant
 google_assistant:
   project_id: homehass-2cd30
@@ -73,41 +55,33 @@ google_assistant:
   access_token: !secret google_assistant_access_token
   exposed_domains:
     - light
-
 # Presence detection
 device_tracker:
   - platform: owntracks
-
 # All automation
 automation: !include automation.yaml
-
+# Media players
 media_player: !include media_player.yaml
-
 # Shell commands
 shell_command:
   # Shuts down cougar
   shutdown_cougar: 'ssh 192.168.0.9 sudo poweroff'
-
 # Scripts
 script: !include script.yaml
-
 # WeMo
 wemo:
   static:
     - 192.168.0.90
-
 # Input booleans
 input_boolean:
   sexy_time:
     name: Sexy Time on
     initial: off
-
 # Notify
 notify:
   - platform: pushbullet
     name: Pushbullet
     api_key: !secret pushbullet_api_key
-
 # Input sliders
 input_number:
   bedroom_brightness:
