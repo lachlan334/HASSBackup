@@ -1,0 +1,9 @@
+sexy_time:
+  name: Sexy Time on
+  initial: off
+guest_mode:
+  name: Guest Mode
+  initial: off
+holiday_mode:
+  name: Holiday Mode
+  initial: off

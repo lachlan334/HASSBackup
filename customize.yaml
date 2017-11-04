@@ -38,6 +38,7 @@ sensor.pihole_dns_queries_today:
 sensor.pihole_ads_percentage_blocked_today:
   friendly_name: Percentage Blocked Today
   icon: mdi:percent
-group.lights_list:
-  icon: mdi:lightbulb
-  hidden: true
+input_boolean.guest_mode:
+  icon: mdi:human-greeting
+input_boolean.holiday_mode:
+  icon: mdi:beach

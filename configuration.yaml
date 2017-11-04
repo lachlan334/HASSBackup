@@ -73,10 +73,7 @@ wemo:
   static:
     - 192.168.0.90
 # Input booleans
-input_boolean:
-  sexy_time:
-    name: Sexy Time on
-    initial: off
+input_boolean: !include input_boolean.yaml
 # Notify
 notify:
   - platform: pushbullet

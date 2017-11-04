@@ -4,6 +4,7 @@ default_view:
   entities:
     - device_tracker.ashlee_ashlee
     - device_tracker.lachlan_lachlan
+    # - device_tracker.guest
     - group.bedroom
     - group.hallway
     - group.theatre
@@ -23,8 +24,12 @@ theatre:
   control: hidden
   entities:
     - light.theatre
-    # - input_number.theatre_brightness
-    # - switch.cougar
+operation_modes:
+  name: Operation Modes
+  control: hidden
+  entities:
+    - input_boolean.guest_mode
+    - input_boolean.holiday_mode
 pi_status:
   name: Server Status
   entities:
@@ -58,6 +63,7 @@ system:
   name: System
   view: yes
   entities:
+    - group.operation_modes
     - group.pi_status
     - group.speedtest
     - group.pihole
@@ -71,11 +77,3 @@ outside:
   name: Outside
   entities:
     - light.porch
-# lights_list:
-#   name: All Lights
-#   entities:
-#     - light.bedroom
-#     - light.hallway_1
-#     - light.hallway_2
-#     - light.theatre
-#     - light.porch
