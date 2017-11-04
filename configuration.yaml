@@ -33,6 +33,7 @@ http:
 
 # Checks for available updates
 updater:
+  include_used_components: true
 
 recorder:
   purge_interval: 1
@@ -40,9 +41,6 @@ recorder:
 
 # Discover some devices automatically
 discovery:
-
-# Enables support for tracking state changes over time.
-#history:
 
 # View all events in a logbook
 logbook:
@@ -68,6 +66,7 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
 
+# Google Assistant
 google_assistant:
   project_id: homehass-2cd30
   client_id: !secret google_assistant_client_id
@@ -79,49 +78,23 @@ google_assistant:
 device_tracker:
   - platform: owntracks
 
-#input_boolean:
-  #lachlan_home:
-    #name: Lachlan Home
-    #initial: 'on'
-  #ashlee_home:
-    #name: Ashlee Home
-    #initial: 'on'
-
 # All automation
 automation: !include automation.yaml
 
-# Chromecast
-media_player livingroom_chromecast:
-  - platform: cast
-    host: 192.168.0.2
-
-media_player bedroom_chromecast:
-  - platform: cast
-    host: 192.168.0.6
-
-media_player google_home:
-  - platform: cast
-    host: 192.168.0.7
+media_player: !include media_player.yaml
 
 # Shell commands
 shell_command:
-  # Shuts down cougar. Used for WOL turn_off
+  # Shuts down cougar
   shutdown_cougar: 'ssh 192.168.0.9 sudo poweroff'
 
+# Scripts
 script: !include script.yaml
 
 # WeMo
 wemo:
   static:
     - 192.168.0.90
-
-# Scenes
-scene:
-  - name: Bedroom dim
-    entities:
-      light.bedroom:
-        to: on
-        brightness: 25
 
 # Input booleans
 input_boolean:
@@ -138,12 +111,6 @@ notify:
 # Input sliders
 input_number:
   bedroom_brightness:
-    name: Brightness
-    initial: 255
-    min: 1
-    max: 255
-    step: 63
-  theatre_brightness:
     name: Brightness
     initial: 255
     min: 1
