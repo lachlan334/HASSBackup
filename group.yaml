@@ -28,9 +28,9 @@ theatre:
 pi_status:
   name: Server Status
   entities:
-    - sensor.cpu_use
-    - sensor.ram_use
-    - sensor.disk_use_
+    - sensor.cpu_used
+    - sensor.ram_used
+    - sensor.disk_used_
     - sensor.sent_eth0
     - sensor.received_eth0
     - sensor.last_boot
