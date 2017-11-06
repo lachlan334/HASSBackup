@@ -95,10 +95,9 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.pushbullet
+    service: notify.ios_lachlans_iphone
     data:
       title: 'Home Assistant update available'
-      target: 'channel/mcphillips-rd'
       message: 'Home Assistant  {{ states.updater.updater.state }}  is now available.'
 
 # Brightness slider
@@ -120,9 +119,8 @@
     entity_id: sensor.ssl_cert_expiry
     below: 21
   action:
-    service: notify.pushbullet
+    service: notify.ios_lachlans_iphone
     data:
-      target: 'channel/mcphillips-rd'
       title: 'Issue with SSL certificate renewal'
       message: 'Warning - SSL certificate expires in 21 days and has not been automatically renewed'
 

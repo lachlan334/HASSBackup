@@ -64,6 +64,7 @@ system:
   view: yes
   entities:
     - group.operation_modes
+    - script.restart_homebridge
     - group.pi_status
     - group.speedtest
     - group.pihole

@@ -39,7 +39,7 @@
 # Pi-Hole stats
 - platform: pi_hole
   name: pi-hole
-  host: localhost:8090
+  host: localhost
   monitored_conditions:
     - dns_queries_today
     - ads_blocked_today
