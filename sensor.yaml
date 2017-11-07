@@ -1,11 +1,27 @@
 # Weather from DarkSky
 - platform: darksky
-  name: darksky
   api_key: !secret darksky_api_key
+  update_interval: 300
   monitored_conditions:
+    - summary
+    - icon
+    - nearest_storm_distance
+    - precip_type
+    - precip_intensity
+    - precip_probability
     - temperature
-    - humidity
+    - apparent_temperature
+    - dew_point
+    - wind_speed
+    - wind_bearing
     - cloud_cover
+    - humidity
+    - pressure
+    - visibility
+    - ozone
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
 # Check SSL cert expiry
 - platform: command_line
   name: ssl_cert_expirty
@@ -53,7 +69,7 @@
       value_template: >-
         {% if (states.sun.sun.attributes.elevation | int < 30) %}
           true
-        {% elif ( (states.sun.sun.attributes.elevation | int < 40) and (states.sensor.darksky_cloud_coverage.state | int > 50)) %}
+        {% elif ( (states.sun.sun.attributes.elevation | int < 40) and (states.sensor.dark_sky_cloud_coverage.state | int > 50)) %}
           true
         {% else %}
           false
