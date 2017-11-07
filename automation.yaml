@@ -16,15 +16,28 @@
     entity_id: script.hallway_1_timer
 
 # Porch light automation
-- alias: Turn on porch light based on darkness
+# - alias: Turn on porch light based on darkness
+#   initial_state: on
+#   trigger:
+#     platform: state
+#     entity_id: sensor.is_it_dark
+#     to: 'true'
+#   action:
+#     service: light.turn_on
+#     entity_id: light.porch
+- alias: Turn porch light on at sunset
   initial_state: on
   trigger:
-    platform: state
-    entity_id: sensor.is_it_dark
-    to: 'true'
+    platform: sun
+    event: sunset
+    offest: "-00:30:00"
   action:
-    service: light.turn_on
-    entity_id: light.porch
+    - service: notify.ios_lachlans_iphone
+      data:
+        title: 'Sunset in 30 minutes'
+        message: 'Porch light turning on now'
+    - service: light.turn_on
+      entity_id: light.porch
 - alias: Turn off porch light at 11:00pm
   initial_state: on
   trigger:
@@ -254,3 +267,16 @@
   action:
     service: homeassistant.turn_off
     entity_id: group.all_lights
+
+# Notification to test darkness sensor
+- alias: Notify when dark
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: sensor.is_it_dark
+    to: 'true'
+  action:
+    service: notify.ios_lachlans_iphone
+    data:
+      title: 'Is it dark?'
+      message: 'Dark enough for the porch light to be on?'
