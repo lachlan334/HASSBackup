@@ -30,7 +30,7 @@
   trigger:
     platform: sun
     event: sunset
-    offest: "-00:30:00"
+    offset: "-00:30:00"
   action:
     - service: notify.ios_lachlans_iphone
       data:
