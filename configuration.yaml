@@ -67,7 +67,7 @@ shell_command:
   # Shuts down cougar
   shutdown_cougar: 'ssh 192.168.0.9 sudo poweroff'
   # Restart Homebridge
-  restart_homebridge: 'systemctl restart homebridge.service'
+  restart_homebridge: 'sudo /bin/systemctl restart homebridge.service'
 # Scripts
 script: !include script.yaml
 # WeMo
