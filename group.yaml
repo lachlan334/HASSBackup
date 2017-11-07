@@ -5,7 +5,7 @@ default_view:
     - device_tracker.ashlee_ashlee
     - device_tracker.lachlan_lachlan
     # - device_tracker.guest
-    - group.weather
+    - group.bedroom
     - group.hallway
     - group.theatre
     - group.outside
