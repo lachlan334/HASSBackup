@@ -32,7 +32,7 @@
     event: sunset
     offset: "-00:30:00"
   action:
-    - service: notify.ios_lachlans_iphone
+    - service: notify.ios_lachlan_iphone
       data:
         title: 'Sunset in 30 minutes'
         message: 'Porch light turning on now'
@@ -107,7 +107,7 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.ios_lachlans_iphone
+    service: notify.ios_lachlan_iphone
     data:
       title: 'Home Assistant update available'
       message: 'Home Assistant  {{ states.updater.updater.state }}  is now available.'
@@ -131,7 +131,7 @@
     entity_id: sensor.ssl_cert_expiry
     below: 21
   action:
-    service: notify.ios_lachlans_iphone
+    service: notify.ios_lachlan_iphone
     data:
       title: 'Issue with SSL certificate renewal'
       message: 'Warning - SSL certificate expires in 21 days and has not been automatically renewed'
@@ -276,7 +276,7 @@
     entity_id: sensor.is_it_dark
     to: 'true'
   action:
-    service: notify.ios_lachlans_iphone
+    service: notify.ios_lachlan_iphone
     data:
       title: 'Is it dark?'
       message: 'Dark enough for the porch light to be on?'

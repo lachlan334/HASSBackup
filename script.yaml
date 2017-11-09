@@ -47,3 +47,9 @@ restart_homebridge:
   alias: Restart Homebridge
   sequence:
     service: shell_command.restart_homebridge
+help:
+  alias: Help
+  sequence:
+    service: notify.ios_lachlan_iphone
+    data:
+      message: 'Your guest requires assistance'

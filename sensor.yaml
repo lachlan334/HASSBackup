@@ -22,12 +22,14 @@
     - minutely_summary
     - hourly_summary
     - daily_summary
+
 # Check SSL cert expiry
 - platform: command_line
   name: ssl_cert_expirty
   unit_of_measurement: days
   scan_interval: 10800
   command: !secret ssl_cert_expiry_command
+
 # Raspberry Pi system stats
 - platform: systemmonitor
   name: pi_status
@@ -42,6 +44,7 @@
     - type: processor_use
     - type: last_boot
     - type: since_last_boot
+
 # Internet speedtest
 - platform: speedtest
   name: speedtest
@@ -52,6 +55,7 @@
     - ping
     - download
     - upload
+
 # Pi-Hole stats
 - platform: pi_hole
   name: pi-hole
