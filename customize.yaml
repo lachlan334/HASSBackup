@@ -42,3 +42,6 @@ input_boolean.guest_mode:
   icon: mdi:human-greeting
 input_boolean.holiday_mode:
   icon: mdi:beach
+switch.all_lights:
+  icon: mdi:lightbulb
+  friendly_name: All Lights

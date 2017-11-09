@@ -41,6 +41,8 @@ tts:
 config:
 # Sensors
 sensor: !include sensor.yaml
+# Switches
+switch: !include switch.yaml
 # Google Assistant
 google_assistant:
   project_id: homehass-2cd30

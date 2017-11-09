@@ -9,6 +9,7 @@ default_view:
     - group.hallway
     - group.theatre
     - group.outside
+    - group.master_switch
 bedroom:
   name: Bedroom
   entities:
@@ -78,3 +79,7 @@ outside:
   name: Outside
   entities:
     - light.porch
+master_switch:
+  name: Master Switch
+  entities:
+    - switch.all_lights
