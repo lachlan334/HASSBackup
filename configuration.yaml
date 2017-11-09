@@ -41,13 +41,6 @@ tts:
 config:
 # Sensors
 sensor: !include sensor.yaml
-# MQTT setup for Owntracks
-mqtt:
-  broker: 127.0.0.1
-  port: 1883
-  client_id: home-assistant
-  username: !secret mqtt_username
-  password: !secret mqtt_password
 # Google Assistant
 google_assistant:
   project_id: homehass-2cd30
@@ -57,7 +50,7 @@ google_assistant:
     - light
 # Presence detection
 device_tracker:
-  - platform: owntracks
+  - platform: owntracks_http
 # All automation
 automation: !include automation.yaml
 # Media players
