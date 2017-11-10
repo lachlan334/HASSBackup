@@ -176,6 +176,10 @@
       entity_id: group.scene_switches
       data:
         visible: false
+    - service: group.set_visibility
+      entity_id: group.system_tasks
+      data:
+        visible: false
 - alias: Replace components when Guest Mode is switched off
   initial_state: on
   trigger:
@@ -189,6 +193,10 @@
         visible: true
     - service: group.set_visibility
       entity_id: group.scene_switches
+      data:
+        visible: true
+    - service: group.set_visibility
+      entity_id: group.system_tasks
       data:
         visible: true
 
