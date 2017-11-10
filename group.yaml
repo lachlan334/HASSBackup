@@ -5,11 +5,19 @@ default_view:
     - device_tracker.ashlee_ashlee
     - device_tracker.lachlan_lachlan
     # - device_tracker.guest
+    - group.weather
     - group.bedroom
     - group.hallway
     - group.theatre
     - group.outside
     - group.master_switch
+weather:
+  name: Weather
+  entities:
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_current_template
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_summary_template
 bedroom:
   name: Bedroom
   entities:
@@ -65,10 +73,10 @@ system:
   view: yes
   entities:
     - group.operation_modes
-    - script.restart_homebridge
     - group.pi_status
     - group.speedtest
     - group.pihole
+    - group.system_tasks
 pihole:
   name: Pi Hole
   entities:
@@ -83,3 +91,9 @@ master_switch:
   name: Master Switch
   entities:
     - switch.all_lights
+system_tasks:
+  name: System Tasks
+  control: hidden
+  entities:
+    - script.restart_homebridge
+    - script.clear_logs

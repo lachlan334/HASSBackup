@@ -45,3 +45,11 @@ input_boolean.holiday_mode:
 switch.all_lights:
   icon: mdi:lightbulb
   friendly_name: All Lights
+script.restart_homebridge:
+  icon: mdi:restart
+script.clear_logs:
+  icon: mdi:delete-sweep
+sensor.dark_sky_apparent_temperature:
+  friendly_name: Current Temperature
+sensor.dark_sky_precip_probability:
+  friendly_name: Chance of Rain

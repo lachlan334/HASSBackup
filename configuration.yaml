@@ -58,11 +58,7 @@ automation: !include automation.yaml
 # Media players
 media_player: !include media_player.yaml
 # Shell commands
-shell_command:
-  # Shuts down cougar
-  shutdown_cougar: 'ssh 192.168.0.9 sudo poweroff'
-  # Restart Homebridge
-  restart_homebridge: 'sudo /bin/systemctl restart homebridge.service'
+shell_command: !include shell_command.yaml
 # Scripts
 script: !include script.yaml
 # WeMo

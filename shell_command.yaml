@@ -1,0 +1,6 @@
+# Shuts down cougar
+shutdown_cougar: 'ssh 192.168.0.9 sudo poweroff'
+# Restart Homebridge
+restart_homebridge: 'sudo /bin/systemctl restart homebridge.service'
+# Clear old log files
+clear_logs: 'sudo /bin/rm /var/log/*.gz'

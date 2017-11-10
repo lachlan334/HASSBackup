@@ -53,3 +53,7 @@ help:
     service: notify.ios_lachlan_iphone
     data:
       message: 'Your guest requires assistance'
+clear_logs:
+  alias: Clear Old Logs
+  sequence:
+    service: shell_command.clear_logs

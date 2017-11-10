@@ -280,3 +280,16 @@
     data:
       title: 'Is it dark?'
       message: 'Dark enough for the porch light to be on?'
+
+# Notify me when the disk is getting too full
+- alias: Notify on 80% disk use
+  initial_state: on
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.disk_used_
+    above: 80
+  action:
+    service: notify.ios_lachlan_iphone
+    data:
+      title: 'Excessive disk use'
+      message: 'Disk use on / now exceeds 80%'
