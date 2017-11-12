@@ -71,9 +71,9 @@
     is_it_dark:
       friendly_name: 'Is it dark?'
       value_template: >-
-        {% if (states.sun.sun.attributes.elevation | int < 30) %}
+        {% if (states.sun.sun.attributes.elevation | int < 10) %}
           true
-        {% elif ( (states.sun.sun.attributes.elevation | int < 40) and (states.sensor.dark_sky_cloud_coverage.state | int > 50)) %}
+        {% elif ( (states.sun.sun.attributes.elevation | int < 20) and (states.sensor.dark_sky_cloud_coverage.state | int > 70)) %}
           true
         {% else %}
           false

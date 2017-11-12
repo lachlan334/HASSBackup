@@ -22,8 +22,16 @@ script.manual_speedtest:
   icon: mdi:refresh
 light.hallway_1:
   friendly_name: Front
+  homebridge_visible: true
 light.hallway_2:
   friendly_name: Back
+  homebridge_visible: true
+light.porch:
+  homebridge_visible: true
+light.bedroom:
+  homebridge_visible: true
+light.theatre:
+  homebridge_visible: true
 script.sexy_time:
   icon: mdi:heart
 script.fishtank:

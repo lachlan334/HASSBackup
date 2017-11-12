@@ -287,7 +287,7 @@
     service: notify.ios_lachlan_iphone
     data:
       title: 'Is it dark?'
-      message: 'Dark enough for the porch light to be on?'
+      message: Elevation is {{ states.sun.sun.attributes.elevation }} and cloud cover is {{ states('sensor.dark_sky_cloud_coverage') }}.
 
 # Notify me when the disk is getting too full
 - alias: Notify on 80% disk use
