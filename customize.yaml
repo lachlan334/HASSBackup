@@ -10,14 +10,18 @@ sensor.speedtest_upload:
 sensor.speedtest_ping:
   friendly_name: Ping
   icon: mdi:radio-tower
-sensor.disk_use_:
+sensor.disk_used_:
   friendly_name: Disk Use
 sensor.sent_eth0:
   friendly_name: Sent
+  icon: mdi:upload-network
 sensor.received_eth0:
   friendly_name: Received
-sensor.cpu_use:
+  icon: mdi:download-network
+sensor.cpu_used:
   icon: mdi:raspberrypi
+sensor.last_boot:
+  icon: mdi:calendar-clock
 script.manual_speedtest:
   icon: mdi:refresh
 light.hallway_1:

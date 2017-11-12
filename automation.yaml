@@ -1,3 +1,4 @@
+# Turn on front hallway light for 5 minutes when someone comes home
 - alias: Turn on front hallway light when someone comes home
   initial_state: on
   trigger:
@@ -30,11 +31,11 @@
   trigger:
     platform: sun
     event: sunset
-    offset: "-00:30:00"
+    offset: "-00:15:00"
   action:
     - service: notify.ios_lachlan_iphone
       data:
-        title: 'Sunset in 30 minutes'
+        title: 'Sunset in 15 minutes'
         message: 'Porch light turning on now'
     - service: light.turn_on
       entity_id: light.porch
