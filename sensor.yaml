@@ -25,7 +25,7 @@
 
 # Check SSL cert expiry
 - platform: command_line
-  name: ssl_cert_expirty
+  name: ssl_cert_expiry
   unit_of_measurement: days
   scan_interval: 10800
   command: !secret ssl_cert_expiry_command
