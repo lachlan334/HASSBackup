@@ -50,8 +50,9 @@ restart_homebridge:
 help:
   alias: Help
   sequence:
-    service: notify.ios_lachlan_iphone
+    service: notify.pushbullet
     data:
+      target: 'channel/mcphillips-rd'
       message: 'Your guest requires assistance'
 clear_logs:
   alias: Clear Old Logs

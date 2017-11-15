@@ -7,3 +7,5 @@ guest_mode:
 holiday_mode:
   name: Holiday Mode
   initial: off
+pixel2xl_charging:
+  initial: off

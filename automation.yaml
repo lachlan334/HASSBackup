@@ -33,8 +33,9 @@
     event: sunset
     offset: "-00:15:00"
   action:
-    - service: notify.ios_lachlan_iphone
+    - service: notify.pushbullet
       data:
+        target: 'channel/mcphillips-rd'
         title: 'Sunset in 15 minutes'
         message: 'Porch light turning on now'
     - service: light.turn_on
@@ -108,8 +109,9 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.ios_lachlan_iphone
+    service: notify.pushbullet
     data:
+      target: 'channel/mcphillips-rd'
       title: 'Home Assistant update available'
       message: 'Home Assistant  {{ states.updater.updater.state }}  is now available.'
 
@@ -132,8 +134,9 @@
     entity_id: sensor.ssl_cert_expiry
     below: 21
   action:
-    service: notify.ios_lachlan_iphone
+    service: notify.pushbullet
     data:
+      target: 'mcphillips-rd'
       title: 'Issue with SSL certificate renewal'
       message: 'Warning - SSL certificate expires in 21 days and has not been automatically renewed'
 
@@ -285,8 +288,9 @@
     entity_id: sensor.is_it_dark
     to: 'true'
   action:
-    service: notify.ios_lachlan_iphone
+    service: notify.pushbullet
     data:
+      target: 'mcphillips-rd'
       title: 'Is it dark?'
       message: Elevation is {{ states.sun.sun.attributes.elevation }} and cloud cover is {{ states('sensor.dark_sky_cloud_coverage') }}.
 
@@ -298,7 +302,8 @@
     entity_id: sensor.disk_used_
     above: 80
   action:
-    service: notify.ios_lachlan_iphone
+    service: notify.pushbullet
     data:
+      target: 'mcphillips-rd'
       title: 'Excessive disk use'
       message: 'Disk use on / now exceeds 80%'
