@@ -136,7 +136,7 @@
   action:
     service: notify.pushbullet
     data:
-      target: 'mcphillips-rd'
+      target: 'channel/mcphillips-rd'
       title: 'Issue with SSL certificate renewal'
       message: 'Warning - SSL certificate expires in 21 days and has not been automatically renewed'
 
@@ -229,9 +229,9 @@
   initial_state: on
   trigger:
     platform: state
-    entity_id: sensor.lachlans_iphone_battery_state
-    from: 'Unplugged'
-    to: 'Charging'
+    entity_id: input_boolean.pixel2xl_charging
+    from: 'off'
+    to: 'on'
   condition:
     condition: and
     conditions:
@@ -263,8 +263,8 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: sensor.lachlans_iphone_battery_state
-        state: 'Charging'
+        entity_id: input_boolean.pixel2xl_charging
+        state: 'on'
       - condition: state
         entity_id: device_tracker.lachlan_lachlan
         state: 'home'
@@ -290,7 +290,7 @@
   action:
     service: notify.pushbullet
     data:
-      target: 'mcphillips-rd'
+      target: 'channel/mcphillips-rd'
       title: 'Is it dark?'
       message: Elevation is {{ states.sun.sun.attributes.elevation }} and cloud cover is {{ states('sensor.dark_sky_cloud_coverage') }}.
 
@@ -304,6 +304,6 @@
   action:
     service: notify.pushbullet
     data:
-      target: 'mcphillips-rd'
+      target: 'channel/mcphillips-rd'
       title: 'Excessive disk use'
       message: 'Disk use on / now exceeds 80%'
