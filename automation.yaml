@@ -225,26 +225,70 @@
     entity_id: input_boolean.guest_mode
 
 # Turn everything off when we go to bed
-- alias: Lachlan is in bed
+# - alias: Lachlan is in bed
+#   initial_state: on
+#   trigger:
+#     platform: state
+#     entity_id: input_boolean.pixel2xl_charging
+#     from: 'off'
+#     to: 'on'
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: state
+#         entity_id: sensor.iphone_battery_state
+#         state: 'Charging'
+#       - condition: state
+#         entity_id: device_tracker.lachlan_lachlan
+#         state: 'home'
+#       - condition: state
+#         entity_id: device_tracker.ashlee_ashlee
+#         state: 'home'
+#       - condition: state
+#         entity_id: input_boolean.guest_mode
+#         state: 'off'
+#       - condition: time
+#         after: '21:00:00'
+#   action:
+#     service: homeassistant.turn_off
+#     entity_id: group.all_lights
+# - alias: Ashlee is in bed
+#   initial_state: on
+#   trigger:
+#     platform: state
+#     entity_id: sensor.iphone_battery_state
+#     from: 'Unplugged'
+#     to: 'Charging'
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: state
+#         entity_id: input_boolean.pixel2xl_charging
+#         state: 'on'
+#       - condition: state
+#         entity_id: device_tracker.lachlan_lachlan
+#         state: 'home'
+#       - condition: state
+#         entity_id: device_tracker.ashlee_ashlee
+#         state: 'home'
+#       - condition: state
+#         entity_id: input_boolean.guest_mode
+#         state: 'off'
+#       - condition: time
+#         after: '21:00:00'
+#   action:
+#     service: homeassistant.turn_off
+#     entity_id: group.all_lights
+- alias: Bedtime
   initial_state: on
   trigger:
     platform: state
-    entity_id: input_boolean.pixel2xl_charging
-    from: 'off'
+    entity_id: binary_sensor.bedtime
     to: 'on'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: sensor.iphone_battery_state
-        state: 'Charging'
-      - condition: state
-        entity_id: device_tracker.lachlan_lachlan
-        state: 'home'
-      - condition: state
-        entity_id: device_tracker.ashlee_ashlee
-        state: 'home'
-      - condition: state
         entity_id: input_boolean.guest_mode
         state: 'off'
       - condition: time
@@ -252,34 +296,6 @@
   action:
     service: homeassistant.turn_off
     entity_id: group.all_lights
-- alias: Ashlee is in bed
-  initial_state: on
-  trigger:
-    platform: state
-    entity_id: sensor.iphone_battery_state
-    from: 'Unplugged'
-    to: 'Charging'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.pixel2xl_charging
-        state: 'on'
-      - condition: state
-        entity_id: device_tracker.lachlan_lachlan
-        state: 'home'
-      - condition: state
-        entity_id: device_tracker.ashlee_ashlee
-        state: 'home'
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: 'off'
-      - condition: time
-        after: '21:00:00'
-  action:
-    service: homeassistant.turn_off
-    entity_id: group.all_lights
-
 # Notification to test darkness sensor
 - alias: Notify when dark
   initial_state: on

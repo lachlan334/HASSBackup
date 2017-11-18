@@ -45,6 +45,8 @@ tts:
 config:
 # Sensors
 sensor: !include sensor.yaml
+# Binary sensors
+binary_sensor: !include binary_sensor.yaml
 # Switches
 switch: !include switch.yaml
 # Google Assistant
