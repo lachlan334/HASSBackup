@@ -9,9 +9,14 @@
       entity_id: device_tracker.ashlee_ashlee
       to: 'home'
   condition:
-    condition: state
-    entity_id: light.porch
-    state: 'on'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.porch
+        state: 'on'
+      - condition: state
+        entity_id: light.hallway_1
+        state: 'off'
   action:
     service: script.turn_on
     entity_id: script.hallway_1_timer

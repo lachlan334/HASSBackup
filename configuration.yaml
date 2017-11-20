@@ -33,8 +33,40 @@ discovery:
 # View all events in a logbook
 logbook:
 recorder:
-  purge_interval: 1
+  purge_interval: 7
   purge_keep_days: 7
+  exclude:
+    domains:
+      - group
+      - media_player
+      - zone
+    entities:
+      - input_boolean.sexy_time
+      - input_number.bedroom_brightness
+      - sensor.dark_sky_current_template
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_daily_summary
+      - sensor.dark_sky_dew_point
+      - sensor.dark_sky_icon
+      - sensor.dark_sky_minutely_summary
+      - sensor.dark_sky_nearest_storm_distance
+      - sensor.dark_sky_ozone
+      - sensor.dark_sky_precip
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_pressure
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_summary_template
+      - sensor.dark_sky_visibility
+      - sensor.dark_sky_wind_bearing
+      - sensor.dark_sky_wind_speed
+      - sensor.iphone_battery_level
+      - sensor.lachlans_ipad_battery_level
+      - sensor.lachlans_ipad_battery_state
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_ads_percentage_blocked_today
+      - sensor.pihole_dns_queries_today
+      - sensor.ssl_cert_expiry
+      - switch.all_lights
 history:
 # Track the sun
 sun:
