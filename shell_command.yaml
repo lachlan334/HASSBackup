@@ -4,3 +4,5 @@ shutdown_cougar: 'ssh 192.168.0.9 sudo poweroff'
 restart_homebridge: 'sudo /bin/systemctl restart homebridge.service'
 # Clear old log files
 clear_logs: 'sudo /bin/rm /var/log/*.gz'
+# Restart iBeacon
+restart_ibeacon: 'sudo /bin/hciconfig hci0 up | sudo /bin/hciconfig hci0 leadv 3 | sudo /bin/hciconfig hci0 noscan | sudo /usr/bin/hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 63 6F 3F 8F 64 91 4B EE 95 F7 D8 CC 64 A8 63 B5 00 00 00 00 C8'

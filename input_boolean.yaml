@@ -3,9 +3,7 @@ sexy_time:
   initial: off
 guest_mode:
   name: Guest Mode
-  initial: off
 holiday_mode:
   name: Holiday Mode
-  initial: off
 pixel2xl_charging:
   initial: off
