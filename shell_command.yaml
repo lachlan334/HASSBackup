@@ -3,6 +3,14 @@ shutdown_cougar: 'ssh 192.168.0.9 sudo poweroff'
 # Restart Homebridge
 restart_homebridge: 'sudo /bin/systemctl restart homebridge.service'
 # Clear old log files
-clear_logs: 'sudo /bin/rm /var/log/*.gz'
+clear_logs: 'sudo /bin/rm /var/log/*.1'
 # Restart iBeacon
 restart_ibeacon: 'sudo /bin/hciconfig hci0 up | sudo /bin/hciconfig hci0 leadv 3 | sudo /bin/hciconfig hci0 noscan | sudo /usr/bin/hcitool -i hci0 cmd 0x08 0x0008 1E 02 01 1A 1A FF 4C 00 02 15 63 6F 3F 8F 64 91 4B EE 95 F7 D8 CC 64 A8 63 B5 00 00 00 00 C8'
+# Set status of fake device trackers
+# Shell scripts used as the shell_command component doesn't seem to be able to handle single apostrophes as part of the command.
+# I can't share the scripts as they contain my API password and URL, use a variation of the below
+# 'curl -X POST -H "x-ha-access: HASS-PASSWORD" -H "Content-Type: application/json" -d "{"state":"home","attributes":{"friendly_name":"Lachlan","entity_picture":"/local/lachlan.jpg"}}" https://HASS-URL/api/states/device_tracker.lachlan'
+set_lachlan_home: /home/homeassistant/.homeassistant/shell_scripts/set_lachlan_home.sh
+set_lachlan_away: /home/homeassistant/.homeassistant/shell_scripts/set_lachlan_away.sh
+set_ashlee_home: /home/homeassistant/.homeassistant/shell_scripts/set_ashlee_home.sh
+set_ashlee_away: /home/homeassistant/.homeassistant/shell_scripts/set_ashlee_away.sh

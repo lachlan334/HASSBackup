@@ -3,10 +3,10 @@
   initial_state: on
   trigger:
     - platform: state
-      entity_id: device_tracker.lachlan_lachlan
+      entity_id: device_tracker.lachlan
       to: 'home'
     - platform: state
-      entity_id: device_tracker.ashlee_ashlee
+      entity_id: device_tracker.ashlee
       to: 'home'
   condition:
     condition: and
@@ -54,10 +54,10 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: device_tracker.lachlan_lachlan
+        entity_id: device_tracker.lachlan
         state: 'home'
       - condition: state
-        entity_id: device_tracker.ashlee_ashlee
+        entity_id: device_tracker.ashlee
         state: 'home'
   action:
     service: light.turn_off
@@ -146,28 +146,28 @@
       message: 'Warning - SSL certificate expires in 21 days and has not been automatically renewed'
 
 # # Welcome home
-# - alias: Welcome Ashlee home
-#   initial_state: on
-#   trigger:
-#     platform: state
-#     entity_id: device_tracker.ashlee_ashlee
-#     to: 'home'
-#   action:
-#     service: tts.google_say
-#     entity_id: media_player.living_room_speaker
-#     data:
-#       message: 'Welcome home Ashlee'
-# - alias: Welcome Lachlan home
-#   initial_state: on
-#   trigger:
-#     platform: state
-#     entity_id: device_tracker.lachlan_lachlan
-#     to: 'home'
-#   action:
-#     service: tts.google_say
-#     entity_id: media_player.living_room_speaker
-#     data:
-#       message: 'Welcome home Lochlan'
+- alias: Welcome Ashlee home
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: device_tracker.ashlee
+    to: 'home'
+  action:
+    service: tts.google_say
+    entity_id: media_player.living_room_speaker
+    data:
+      message: 'Welcome home Ashlee'
+- alias: Welcome Lachlan home
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: device_tracker.lachlan
+    to: 'home'
+  action:
+    service: tts.google_say
+    entity_id: media_player.living_room_speaker
+    data:
+      message: 'Welcome home Lochlan'
 
 # Change what is displayed when Guest Mode is on
 - alias: Remove components for Guest Mode
@@ -244,10 +244,10 @@
 #         entity_id: sensor.iphone_battery_state
 #         state: 'Charging'
 #       - condition: state
-#         entity_id: device_tracker.lachlan_lachlan
+#         entity_id: device_tracker.lachlan
 #         state: 'home'
 #       - condition: state
-#         entity_id: device_tracker.ashlee_ashlee
+#         entity_id: device_tracker.ashlee
 #         state: 'home'
 #       - condition: state
 #         entity_id: input_boolean.guest_mode
@@ -271,10 +271,10 @@
 #         entity_id: input_boolean.pixel2xl_charging
 #         state: 'on'
 #       - condition: state
-#         entity_id: device_tracker.lachlan_lachlan
+#         entity_id: device_tracker.lachlan
 #         state: 'home'
 #       - condition: state
-#         entity_id: device_tracker.ashlee_ashlee
+#         entity_id: device_tracker.ashlee
 #         state: 'home'
 #       - condition: state
 #         entity_id: input_boolean.guest_mode
@@ -337,3 +337,37 @@
     event: start
   action:
     service: shell_command.restart_ibeacon
+
+# Update fake device trackers
+- alias: Set Lachlan as home
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: group.lachlan_presence
+    to: 'home'
+  action:
+    service: shell_command.set_lachlan_home
+- alias: Set Lachlan as away
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: group.lachlan_presence
+    to: 'not_home'
+  action:
+    service: shell_command.set_lachlan_away
+- alias: Set Ashlee as home
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: group.ashlee_presence
+    to: 'home'
+  action:
+    service: shell_command.set_ashlee_home
+- alias: Set Ashlee as away
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: group.ashlee_presence
+    to: 'not_home'
+  action:
+    service: shell_command.set_ashlee_away

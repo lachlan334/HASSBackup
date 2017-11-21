@@ -65,3 +65,11 @@ sensor.dark_sky_apparent_temperature:
   friendly_name: Current Temperature
 sensor.dark_sky_precip_probability:
   friendly_name: Chance of Rain
+sensor.lachlan_device_tracker:
+  friendly_name: Lachlan
+  entity_picture: /local/lachlan.jpg
+sensor.ashlee_device_tracker:
+  friendly_name: Ashlee
+  entity_picture: /local/ashlee.jpg
+zone.home:
+  tracks_ios: false

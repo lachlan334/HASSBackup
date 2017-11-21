@@ -2,8 +2,8 @@ default_view:
   name: Home
   view: yes
   entities:
-    - device_tracker.ashlee_ashlee
-    - device_tracker.lachlan_lachlan
+    - device_tracker.ashlee
+    - device_tracker.lachlan
     # - device_tracker.guest
     - group.weather
     - group.bedroom
@@ -97,3 +97,11 @@ system_tasks:
   entities:
     - script.restart_homebridge
     - script.clear_logs
+lachlan_presence:
+  entities:
+    - device_tracker.lachlan_owntracks
+    - device_tracker.lachlan_nmap
+ashlee_presence:
+  entities:
+    - device_tracker.ashlee_owntracks
+    - device_tracker.ashlee_nmap

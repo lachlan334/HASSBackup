@@ -130,3 +130,5 @@ input_number:
     min: 1
     max: 255
     step: 63
+# Scenes
+# scene: !include scene.yaml
