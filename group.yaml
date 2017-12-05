@@ -5,11 +5,12 @@ default_view:
     - device_tracker.ashlee
     - device_tracker.lachlan
     # - device_tracker.guest
-    - group.weather
+    #- group.weather
     - group.bedroom
     - group.hallway
     - group.theatre
     - group.outside
+    - group.christmas
     - group.master_switch
 weather:
   name: Weather
@@ -87,6 +88,10 @@ outside:
   name: Outside
   entities:
     - light.porch
+christmas:
+  name: Christmas
+  entities:
+    - switch.plug_158d0001de9bb9
 master_switch:
   name: Master Switch
   entities:
@@ -99,9 +104,11 @@ system_tasks:
     - script.clear_logs
 lachlan_presence:
   entities:
-    - device_tracker.lachlan_owntracks
+    #- device_tracker.lachlan_owntracks
     - device_tracker.lachlan_nmap
+    - device_tracker.lachlan_bt
 ashlee_presence:
   entities:
     - device_tracker.ashlee_owntracks
     - device_tracker.ashlee_nmap
+    - device_tracker.ashlee_ashlee

@@ -35,11 +35,8 @@ fishtank:
 hallway_1_timer:
   alias: Hallway 1 timer
   sequence:
-    - alias: Turn light on
-      service: light.turn_on
-      entity_id: light.hallway_1
     - delay:
-        minutes: 5
+        minutes: 3
     - alias: Turn light off
       service: light.turn_off
       entity_id: light.hallway_1

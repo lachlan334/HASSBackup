@@ -99,6 +99,7 @@ device_tracker:
     host: 192.168.0.1
     username: !secret netgear_username
     password: !secret netgear_password
+  - platform: bluetooth_tracker
 # All automation
 automation: !include automation.yaml
 # Media players
@@ -132,3 +133,8 @@ input_number:
     step: 63
 # Scenes
 # scene: !include scene.yaml
+# Xiaomi devices
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: 4vpq9mbi8e5j6hfi

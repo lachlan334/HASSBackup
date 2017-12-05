@@ -1,22 +1,23 @@
-# Turn on front hallway light for 5 minutes when someone comes home
-- alias: Turn on front hallway light when someone comes home
+# Front hallway light automation
+- alias: Turn on front hallway light when front door opens
   initial_state: on
   trigger:
-    - platform: state
-      entity_id: device_tracker.lachlan
-      to: 'home'
-    - platform: state
-      entity_id: device_tracker.ashlee
-      to: 'home'
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d00019f530b
+    to: 'on'
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: light.porch
-        state: 'on'
-      - condition: state
-        entity_id: light.hallway_1
-        state: 'off'
+    - condition: state
+      entity_id: light.porch
+      state: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.hallway_1
+- alias: Closing the front door turns the front hallway light off after 3 minutes
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d00019f530b
+    to: 'off'
   action:
     service: script.turn_on
     entity_id: script.hallway_1_timer
@@ -302,18 +303,18 @@
     service: homeassistant.turn_off
     entity_id: group.all_lights
 # Notification to test darkness sensor
-- alias: Notify when dark
-  initial_state: on
-  trigger:
-    platform: state
-    entity_id: sensor.is_it_dark
-    to: 'true'
-  action:
-    service: notify.pushbullet
-    data:
-      target: 'channel/mcphillips-rd'
-      title: 'Is it dark?'
-      message: Elevation is {{ states.sun.sun.attributes.elevation }} and cloud cover is {{ states('sensor.dark_sky_cloud_coverage') }}.
+# - alias: Notify when dark
+#   initial_state: on
+#   trigger:
+#     platform: state
+#     entity_id: sensor.is_it_dark
+#     to: 'true'
+#   action:
+#     service: notify.pushbullet
+#     data:
+#       target: 'channel/mcphillips-rd'
+#       title: 'Is it dark?'
+#       message: Elevation is {{ states.sun.sun.attributes.elevation }} and cloud cover is {{ states('sensor.dark_sky_cloud_coverage') }}.
 
 # Notify me when the disk is getting too full
 - alias: Notify on 80% disk use
@@ -371,3 +372,22 @@
     to: 'not_home'
   action:
     service: shell_command.set_ashlee_away
+
+# Christmas tree automation
+- alias: Turn Christmas tree on when sun sets
+  initial_state: on
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    service: switch.turn_on
+    entity_id: switch.plug_158d0001de9bb9
+- alias: Turn Christmas tree off when porch light turns off
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: light.porch
+    to: 'off'
+  action:
+    service: switch.turn_off
+    entity_id: switch.plug_158d0001de9bb9
