@@ -67,18 +67,6 @@
 
 - platform: template
   sensors:
-    # Darkness sensor
-    is_it_dark:
-      friendly_name: 'Is it dark?'
-      value_template: >-
-        {% if (states.sun.sun.attributes.elevation | int < 10) %}
-          true
-        {% elif ( (states.sun.sun.attributes.elevation | int < 20) and (states.sensor.dark_sky_cloud_coverage.state | int > 70)) %}
-          true
-        {% else %}
-          false
-        {% endif %}
-    # Weather sensors with correct icon
     dark_sky_summary_template:
       friendly_name: 'Rest of Today'
       value_template: "{{ states('sensor.dark_sky_hourly_summary') }}"

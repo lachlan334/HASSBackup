@@ -35,7 +35,7 @@ theatre:
   entities:
     - light.theatre
 operation_modes:
-  name: Operation Modes
+  name: House Modes
   control: hidden
   entities:
     - input_boolean.guest_mode
@@ -57,11 +57,11 @@ speedtest:
     - sensor.speedtest_ping
     - sensor.speedtest_download
     - sensor.speedtest_upload
-scenes:
-  name: Scenes
-  view: yes
-  entities:
-    - group.scene_switches
+# scenes:
+#   name: Scenes
+#   view: yes
+#   entities:
+#     - group.scene_switches
 scene_switches:
   name: Scenes
   control: hidden

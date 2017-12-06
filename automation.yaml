@@ -146,29 +146,29 @@
       title: 'Issue with SSL certificate renewal'
       message: 'Warning - SSL certificate expires in 21 days and has not been automatically renewed'
 
-# # Welcome home
-- alias: Welcome Ashlee home
-  initial_state: on
-  trigger:
-    platform: state
-    entity_id: device_tracker.ashlee
-    to: 'home'
-  action:
-    service: tts.google_say
-    entity_id: media_player.living_room_speaker
-    data:
-      message: 'Welcome home Ashlee'
-- alias: Welcome Lachlan home
-  initial_state: on
-  trigger:
-    platform: state
-    entity_id: device_tracker.lachlan
-    to: 'home'
-  action:
-    service: tts.google_say
-    entity_id: media_player.living_room_speaker
-    data:
-      message: 'Welcome home Lochlan'
+# Welcome home
+# - alias: Welcome Ashlee home
+#   initial_state: on
+#   trigger:
+#     platform: state
+#     entity_id: device_tracker.ashlee
+#     to: 'home'
+#   action:
+#     service: tts.google_say
+#     entity_id: media_player.living_room_speaker
+#     data:
+#       message: 'Welcome home Ashlee'
+# - alias: Welcome Lachlan home
+#   initial_state: on
+#   trigger:
+#     platform: state
+#     entity_id: device_tracker.lachlan
+#     to: 'home'
+#   action:
+#     service: tts.google_say
+#     entity_id: media_player.living_room_speaker
+#     data:
+#       message: 'Welcome home Lochlan'
 
 # Change what is displayed when Guest Mode is on
 - alias: Remove components for Guest Mode
@@ -242,22 +242,13 @@
 #     condition: and
 #     conditions:
 #       - condition: state
-#         entity_id: sensor.iphone_battery_state
-#         state: 'Charging'
-#       - condition: state
 #         entity_id: device_tracker.lachlan
 #         state: 'home'
-#       - condition: state
-#         entity_id: device_tracker.ashlee
-#         state: 'home'
-#       - condition: state
-#         entity_id: input_boolean.guest_mode
-#         state: 'off'
 #       - condition: time
 #         after: '21:00:00'
 #   action:
-#     service: homeassistant.turn_off
-#     entity_id: group.all_lights
+#     service: homeassistant.turn_on
+#     entity_id: input_boolean.lachlan_in_bed
 # - alias: Ashlee is in bed
 #   initial_state: on
 #   trigger:
@@ -269,22 +260,13 @@
 #     condition: and
 #     conditions:
 #       - condition: state
-#         entity_id: input_boolean.pixel2xl_charging
-#         state: 'on'
-#       - condition: state
-#         entity_id: device_tracker.lachlan
-#         state: 'home'
-#       - condition: state
 #         entity_id: device_tracker.ashlee
 #         state: 'home'
-#       - condition: state
-#         entity_id: input_boolean.guest_mode
-#         state: 'off'
 #       - condition: time
 #         after: '21:00:00'
 #   action:
-#     service: homeassistant.turn_off
-#     entity_id: group.all_lights
+#     service: homeassistant.turn_on
+#     entity_id: input_boolean.ashlee_in_bed
 - alias: Bedtime
   initial_state: on
   trigger:
@@ -391,3 +373,105 @@
   action:
     service: switch.turn_off
     entity_id: switch.plug_158d0001de9bb9
+
+# Security automation
+- alias: Alert if front door opens and nobody is home
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d00019f530b
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.ashlee
+        state: 'not_home'
+      - condition: state
+        entity_id: device_tracker.lachlan
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+  action:
+    - service: notify.pushbullet
+      data:
+        target: 'channel/mcphillips-rd'
+        title: 'Possible break in'
+        message: 'The front door opened and nobody is home'
+    - service: notify.ios_ashlee_ashlee
+      data:
+        title: 'Possible break in'
+        message: 'The front door opened and nobody is home'
+
+# Motion based bedroom light automation
+- alias: Turn bedroom light on when motion detected
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001a98803
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sun.sun
+        value_template: '{{ state.attributes.elevation }}'
+        below: 5
+      - condition: state
+        entity_id: binary_sensor.bedtime
+        state: 'off'
+  action:
+    service: light.turn_on
+    data:
+      entity_id: light.bedroom
+      brightness: 255
+- alias: Turn bedroom light on (dim) when motion detected and we're in bed
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001a98803
+    to: 'on'
+    for:
+      seconds: 15
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: binary_sensor.bedtime
+        state: 'on'
+  action:
+    service: light.turn_on
+    data:
+      entity_id: light.bedroom
+      brightness: 1
+- alias: Turn bedroom light off if no motion detected
+  initial_state: on
+  trigger:
+    platform: template
+    value_template: "{{ is_state_attr('binary_sensor.motion_sensor_158d0001a98803', 'No motion since', '120') }}"
+  condition:
+    condition: state
+    entity_id: binary_sensor.bedtime
+    state: 'off'
+  action:
+    service: light.turn_off
+    entity_id: light.bedroom
+- alias: Turn bedroom light off if no motion detected and we're in bed
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001a98803
+    to: 'off'
+    for:
+      seconds: 15
+  condition:
+    condition: state
+    entity_id: binary_sensor.bedtime
+    state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.bedroom

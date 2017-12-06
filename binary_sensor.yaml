@@ -4,10 +4,9 @@
       entity_id:
         - input_boolean.pixel2xl_charging
         - sensor.iphone_battery_state
-        - device_tracker.lachlan_lachlan
-        - device_tracker.ashlee_ashlee
+        - device_tracker.lachlan
+        - device_tracker.ashlee
       value_template: >-
         {{ is_state('input_boolean.pixel2xl_charging', 'on')
-           and is_state('sensor.iphone_battery_state', 'Charging')
-           and is_state('device_tracker.lachlan_lachlan', 'home')
-           and is_state('device_tracker.ashlee_ashlee', 'home') }}
+           and is_state('device_tracker.lachlan', 'home')
+           and is_state('device_tracker.ashlee', 'home') }}

@@ -137,4 +137,4 @@ input_number:
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
-    - key: 4vpq9mbi8e5j6hfi
+    - key: !secret xiaomi_key
