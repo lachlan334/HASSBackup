@@ -475,3 +475,27 @@
   action:
     service: light.turn_off
     entity_id: light.bedroom
+
+# Xiaomi smart button actions
+- alias: Turn bedroom light on/off when pressed
+  initial_state: on
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001e14665
+      click_type: single
+  action:
+    service: light.toggle
+    entity_id: light.bedroom
+- alias: Turn all lights on/off when long pressed
+  initial_state: on
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001e14665
+      click_type: long_click_press
+  action:
+    service: switch.toggle
+    entity_id: switch.all_lights
