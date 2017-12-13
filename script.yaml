@@ -36,7 +36,7 @@ hallway_1_timer:
   alias: Hallway 1 timer
   sequence:
     - delay:
-        minutes: 3
+        minutes: 2
     - alias: Turn light off
       service: light.turn_off
       entity_id: light.hallway_1
