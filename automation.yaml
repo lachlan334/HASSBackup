@@ -451,8 +451,8 @@
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0001a98803
     to: 'off'
-      for:
-        seconds: 10
+    for:
+      seconds: 10
   condition:
     condition: state
     entity_id: binary_sensor.bedtime

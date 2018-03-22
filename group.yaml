@@ -10,7 +10,7 @@ default_view:
     - group.hallway
     - group.theatre
     - group.outside
-    - group.christmas
+    # - group.christmas
     - group.master_switch
 weather:
   name: Weather
