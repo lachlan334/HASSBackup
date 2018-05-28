@@ -502,17 +502,35 @@
     service: switch.toggle
     entity_id: switch.all_lights
 
+# Washing machine automations
+- alias: Acknowledge that a cycle is about to be run
+  initial_state: on
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.washing_machine_power_load
+    above: 5
+  action:
+    service: homeassistant.turn_on
+    entity_id: input_boolean.washing_machine_cycle
 - alias: Notify when washing machine cycle is finished
   initial_state: on
   trigger:
     platform: numeric_state
     entity_id: sensor.washing_machine_power_load
-    below: 1
+    below: 5
+  condition:
+    condition: state
+    entity_id: input_boolean.washing_machine_cycle
+    state: 'on'
   action:
+    - service: switch.turn_off
+      entity_id: switch.plug_158d0001de9bb9
     - service: notify.pushbullet
       data:
         target: 'channel/mcphillips-rd'
-        title: 'Washing machine cycle complete'
+        message: 'Washing machine cycle complete'
     - service: notify.ios_ashlee_ashlee
       data:
-        title: 'Washing machine cycle complete'
+        message: 'Washing machine cycle complete'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.washing_machine_cycle

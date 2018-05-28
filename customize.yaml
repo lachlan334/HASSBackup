@@ -71,6 +71,6 @@ sensor.lachlan_device_tracker:
 sensor.ashlee_device_tracker:
   friendly_name: Ashlee
   entity_picture: /local/ashlee.jpg
-# switch.plug_158d0001de9bb9:
-#   friendly_name: Christmas Tree
-#   icon: mdi:pine-tree
+switch.plug_158d0001de9bb9:
+  friendly_name: Washing Machine
+  icon: mdi:washing-machine
