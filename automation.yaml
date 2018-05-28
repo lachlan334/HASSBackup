@@ -501,3 +501,18 @@
   action:
     service: switch.toggle
     entity_id: switch.all_lights
+
+- alias: Notify when washing machine cycle is finished
+  initial_state: on
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.washing_machine_power_load
+    below: 1
+  action:
+    - service: notify.pushbullet
+      data:
+        target: 'channel/mcphillips-rd'
+        title: 'Washing machine cycle complete'
+    - service: notify.ios_ashlee_ashlee
+      data:
+        title: 'Washing machine cycle complete'

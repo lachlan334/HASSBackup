@@ -11,6 +11,7 @@ default_view:
     - group.theatre
     - group.outside
     # - group.christmas
+    - group.laundry
     - group.master_switch
 weather:
   name: Weather
@@ -34,6 +35,11 @@ theatre:
   control: hidden
   entities:
     - light.theatre
+laundry:
+  name: Laundry
+  entities:
+    - switch.plug_158d0001de9bb9
+    - sensor.washing_machine_power_load
 operation_modes:
   name: House Modes
   control: hidden

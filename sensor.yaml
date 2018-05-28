@@ -125,3 +125,11 @@
         {% else %}
           mdi:help-circle
         {% endif %}
+    washing_machine_power_load:
+      friendly_name: 'Washing Machine Power'
+      value_template: "{{ states.switch.plug_158d0001de9bb9.attributes.load_power }}"
+
+- platform: plex
+  host: 192.168.0.99
+  server: saltfarm
+  token: !secret plex_token
