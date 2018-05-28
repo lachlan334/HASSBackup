@@ -40,10 +40,6 @@ hallway_1_timer:
     - alias: Turn light off
       service: light.turn_off
       entity_id: light.hallway_1
-restart_homebridge:
-  alias: Restart Homebridge
-  sequence:
-    service: shell_command.restart_homebridge
 help:
   alias: Help
   sequence:

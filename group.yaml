@@ -100,7 +100,6 @@ system_tasks:
   name: System Tasks
   control: hidden
   entities:
-    - script.restart_homebridge
     - script.clear_logs
 lachlan_presence:
   entities:
