@@ -78,3 +78,7 @@ input_boolean.bedroom_motion_sensor:
   icon: mdi:eye
 vacuum.xiaomi_vacuum_cleaner:
   friendly_name: Rosie
+script.vacuum_room:
+  icon: mdi:play
+script.stop_vacuum:
+  icon: mdi:stop

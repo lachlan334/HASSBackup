@@ -146,3 +146,9 @@ vacuum:
   platform: xiaomi_miio
   host: 192.168.0.19
   token: !secret roborock_token
+# Input select
+input_select:
+  vacuum_room:
+    name: Select an area to clean
+    options:
+      - Whole house

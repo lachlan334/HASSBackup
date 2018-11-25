@@ -129,14 +129,17 @@
       friendly_name: 'Washing Machine Power'
       value_template: "{{ states.switch.plug_158d0001de9bb9.attributes.load_power }}"
     vacuum_status:
-      friendly_name: 'Status'
-      value_template: "{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}"
+      friendly_name: 'Rosie'
+      value_template: >-
+          {%-if states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_level == 100 and states.vacuum.xiaomi_vacuum_cleaner.attributes.status =="Charging"-%} Ready
+          {%-else-%} {{states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}
+          {%-endif-%}
       icon_template: >-
-          {% if is_state('sensor.vacuum_status', "Ready") %} mdi:checkbox-marked-circle
+          {% if is_state('sensor.vacuum_status', "Ready") %} mdi:robot-vacuum
           {% elif is_state('sensor.vacuum_status', "Charging") %} mdi:flash-circle
-          {% elif is_state('sensor.vacuum_status', "Running") %} mdi:broom
+          {% elif is_state('sensor.vacuum_status', "Cleaning") %} mdi:broom
           {% elif is_state('sensor.vacuum_status', "Stuck") %} mdi:alert-circle
-          {% elif is_state('sensor.vacuum_status', "Docking") %} mdi:home-circle
+          {% elif is_state('sensor.vacuum_status', "Returning home") %} mdi:home-circle
           {% elif is_state('sensor.vacuum_status', "Paused") %} mdi:pause-circle
           {% elif is_state('sensor.vacuum_status', "Stopped") %} mdi:stop-circle
           {% elif is_state('sensor.vacuum_status', "Zoned cleaning") %} mdi:border-none-variant

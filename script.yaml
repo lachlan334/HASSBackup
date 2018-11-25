@@ -51,3 +51,41 @@ clear_logs:
   alias: Clear Old Logs
   sequence:
     service: shell_command.clear_logs
+vacuum_room:
+    alias: "Start cleaning"
+    sequence:
+      - service: script.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state("input_select.vacuum_room", "Whole house") %}
+              script.vacuum_whole_house
+            {% elif is_state("input_select.vacuum_room", "Kitchen") %}
+              script.vacuum_living_room
+            {% endif %}
+vacuum_whole_house:
+      alias: "Vacuum whole house"
+      sequence:
+        - service: vacuum.turn_on
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+vacuum_kitchen:
+      alias: "Vacuum kitchen"
+      sequence:
+        - service: vacuum.turn_on
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+# Below is the script to clean actual zones
+# vacuum_kitchen:
+#       alias: "Vacuum the kitchen"
+#       sequence:
+#         - service: vacuum.send_command
+#           data:
+#             entity_id: vacuum.DustyMcDustface
+#             command: app_zoned_clean
+#             params: [[26500, 20500, 29000, 23000, 1]]
+stop_vacuum:
+  alias: "Stop cleaning"
+  sequence:
+    - service: vacuum.return_to_home
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner

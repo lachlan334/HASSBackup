@@ -124,5 +124,11 @@ vacuum:
   name: Vacuum
   control: hidden
   entities:
-    - vacuum.xiaomi_vacuum_cleaner
     - sensor.vacuum_status
+    - input_select.vacuum_room
+    - script.vacuum_room
+    - script.stop_vacuum
+family:
+  entities:
+    - device_tracker.ashlee
+    - device_tracker.lachlan
