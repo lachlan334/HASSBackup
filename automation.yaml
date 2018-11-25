@@ -415,6 +415,9 @@
   condition:
     condition: and
     conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_motion_sensor
+        state: 'on'
       - condition: numeric_state
         entity_id: sun.sun
         value_template: '{{ state.attributes.elevation }}'
@@ -458,9 +461,14 @@
     for:
       seconds: 10
   condition:
-    condition: state
-    entity_id: binary_sensor.bedtime
-    state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.bedroom_motion_sensor
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.bedtime
+        state: 'off'
   action:
     service: light.turn_off
     entity_id: light.bedroom
@@ -523,14 +531,7 @@
     entity_id: input_boolean.washing_machine_cycle
     state: 'on'
   action:
-    - service: switch.turn_off
-      entity_id: switch.plug_158d0001de9bb9
-    - service: notify.pushbullet
-      data:
-        target: 'channel/mcphillips-rd'
-        message: 'Washing machine cycle complete'
-    - service: notify.ios_ashlee_ashlee
-      data:
-        message: 'Washing machine cycle complete'
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.washing_machine_cycle
+    service: tts.google_say
+    entity_id: media_player.living_room_speaker
+    data:
+      message: 'Washing machine cycle complete'

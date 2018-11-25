@@ -74,3 +74,7 @@ sensor.ashlee_device_tracker:
 switch.plug_158d0001de9bb9:
   friendly_name: Washing Machine
   icon: mdi:washing-machine
+input_boolean.bedroom_motion_sensor:
+  icon: mdi:eye
+vacuum.xiaomi_vacuum_cleaner:
+  friendly_name: Rosie

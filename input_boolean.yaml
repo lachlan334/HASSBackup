@@ -7,3 +7,6 @@ holiday_mode:
 pixel2xl_charging:
   initial: off
 washing_machine_cycle:
+bedroom_motion_sensor:
+  name: Motion Sensor
+  initial: on

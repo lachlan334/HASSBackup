@@ -5,7 +5,7 @@ default_view:
     - device_tracker.ashlee
     - device_tracker.lachlan
     # - device_tracker.guest
-    #- group.weather
+    # - group.weather
     - group.bedroom
     - group.hallway
     - group.theatre
@@ -13,6 +13,7 @@ default_view:
     # - group.christmas
     - group.laundry
     - group.master_switch
+    - group.vacuum
 weather:
   name: Weather
   entities:
@@ -22,9 +23,11 @@ weather:
     - sensor.dark_sky_summary_template
 bedroom:
   name: Bedroom
+  control: hidden
   entities:
     - light.bedroom
     - input_number.bedroom_brightness
+    - input_boolean.bedroom_motion_sensor
 hallway:
   name: Hallway
   entities:
@@ -39,6 +42,7 @@ laundry:
   name: Laundry
   entities:
     - switch.plug_158d0001de9bb9
+    # - sensor.washing_machine_power_load
 operation_modes:
   name: House Modes
   control: hidden
@@ -48,11 +52,11 @@ operation_modes:
 pi_status:
   name: Server Status
   entities:
-    - sensor.cpu_used
-    - sensor.ram_used
-    - sensor.disk_used_
-    - sensor.sent_eth0
-    - sensor.received_eth0
+    - sensor.processor_use
+    - sensor.memory_use_percent
+    - sensor.disk_use_percent_
+    - sensor.network_out_eth0
+    - sensor.network_in_eth0
     - sensor.last_boot
     - sensor.since_last_boot
 speedtest:
@@ -116,3 +120,9 @@ ashlee_presence:
     - device_tracker.ashlee_owntracks
     - device_tracker.ashlee_nmap
     - device_tracker.ashlee_ashlee
+vacuum:
+  name: Vacuum
+  control: hidden
+  entities:
+    - vacuum.xiaomi_vacuum_cleaner
+    - sensor.vacuum_status

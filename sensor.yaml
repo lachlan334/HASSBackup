@@ -128,6 +128,20 @@
     washing_machine_power_load:
       friendly_name: 'Washing Machine Power'
       value_template: "{{ states.switch.plug_158d0001de9bb9.attributes.load_power }}"
+    vacuum_status:
+      friendly_name: 'Status'
+      value_template: "{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}"
+      icon_template: >-
+          {% if is_state('sensor.vacuum_status', "Ready") %} mdi:checkbox-marked-circle
+          {% elif is_state('sensor.vacuum_status', "Charging") %} mdi:flash-circle
+          {% elif is_state('sensor.vacuum_status', "Running") %} mdi:broom
+          {% elif is_state('sensor.vacuum_status', "Stuck") %} mdi:alert-circle
+          {% elif is_state('sensor.vacuum_status', "Docking") %} mdi:home-circle
+          {% elif is_state('sensor.vacuum_status', "Paused") %} mdi:pause-circle
+          {% elif is_state('sensor.vacuum_status', "Stopped") %} mdi:stop-circle
+          {% elif is_state('sensor.vacuum_status', "Zoned cleaning") %} mdi:border-none-variant
+          {% else %} mdi:checkbox-marked-circle
+          {% endif %}
 
 - platform: plex
   host: 192.168.0.99

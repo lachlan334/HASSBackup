@@ -88,6 +88,8 @@ google_assistant:
   access_token: !secret google_assistant_access_token
   exposed_domains:
     - light
+    - switch
+    - input_boolean
 # Presence detection
 device_tracker:
   - platform: owntracks_http
@@ -139,3 +141,8 @@ xiaomi_aqara:
 #  interface: '192.168.0.10'
   gateways:
     key: !secret xiaomi_key
+# Roborock vacuum
+vacuum:
+  platform: xiaomi_miio
+  host: 192.168.0.19
+  token: !secret roborock_token

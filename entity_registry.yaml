@@ -1,0 +1,152 @@
+binary_sensor.motion_sensor_158d0001a98803:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001a98803
+binary_sensor.door_window_sensor_158d00019f530b:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d00019f530b
+binary_sensor.switch_158d0001e14665:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001e14665
+switch.plug_158d0001de9bb9:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001de9bb9
+light.gateway_light_7811dcb064c1:
+  name:
+  platform: xiaomi_aqara
+  unique_id: rgb7811dcb064c1
+light.hallway_2:
+  name:
+  platform: wemo
+  unique_id: 94103EA2B278C6FB
+light.porch:
+  name:
+  platform: wemo
+  unique_id: 94103EA2B2789A41
+light.hallway_1:
+  name:
+  platform: wemo
+  unique_id: 94103EF6BF436780
+light.theatre:
+  name:
+  platform: wemo
+  unique_id: 94103EA2B2787E54
+light.bedroom:
+  name:
+  platform: wemo
+  unique_id: 94103EA2B2787D10
+sensor.illumination_7811dcb064c1:
+  name:
+  platform: xiaomi_aqara
+  unique_id: illumination7811dcb064c1
+media_player.living_room_speaker:
+  name:
+  platform: cast
+  unique_id: 6d9de6d2-eec0-42ed-2fa0-c56df39d0e68
+media_player.living_room_tv:
+  name:
+  platform: cast
+  unique_id: 09a1117a-8014-1d97-e418-eb7f749e916f
+sensor.iphone_battery_state:
+  name:
+  platform: ios
+  unique_id: state_ashlee_iphone
+sensor.lachlans_iphone_battery_state:
+  name:
+  platform: ios
+  unique_id: state_lachlan_iphone
+sensor.iphone_battery_level:
+  name:
+  platform: ios
+  unique_id: level_ashlee_iphone
+sensor.iphone_battery_state_2:
+  name:
+  platform: ios
+  unique_id: state_ashlee_ashlee
+sensor.lachlans_ipad_battery_level:
+  name:
+  platform: ios
+  unique_id: level_lachlans_ipad
+sensor.iphone_battery_level_2:
+  name:
+  platform: ios
+  unique_id: level_ashlee_ashlee
+sensor.lachlans_iphone_battery_level:
+  name:
+  platform: ios
+  unique_id: level_lachlan_iphone
+sensor.lachlans_ipad_battery_state:
+  name:
+  platform: ios
+  unique_id: state_lachlans_ipad
+media_player.bedroom_speaker:
+  name:
+  platform: cast
+  unique_id: 9579eac3-b43a-b4d2-d3e5-5ad1965ec001
+media_player.firefox:
+  name:
+  platform: plex
+  unique_id: uai3aj8w3jh7mc5dspifx4qf
+media_player.pixel_2_xl:
+  name:
+  platform: plex
+  unique_id: abdbb88cd9538f3d-com-plexapp-android
+media_player.lachlans_ipad:
+  name:
+  platform: plex
+  unique_id: CA99754F-E624-4C0A-9065-8071EC71165F
+media_player.firefox_2:
+  name:
+  platform: plex
+  unique_id: l4n3aoxqlsfftra3i4ueuqx7
+media_player.iphone:
+  name:
+  platform: plex
+  unique_id: 2C102705-8D52-4504-8938-1C094AA3B945
+media_player.chrome:
+  name:
+  platform: plex
+  unique_id: yizx44ijipln3ir1kl8ykpxv
+media_player.bedroom_tv:
+  name:
+  platform: cast
+  unique_id: cd7ac852-580e-1fe2-8d55-4522fa619b51
+media_player.firefox_3:
+  name:
+  platform: plex
+  unique_id: q8cl72eo4tgzv02f47fnsq72
+media_player.firefox_4:
+  name:
+  platform: plex
+  unique_id: wznkwi2s6pq34gdnq963axn6
+media_player.unnamed_device:
+  name:
+  platform: plex
+  unique_id: ejlzk66m3tac99vgkzjijgic
+media_player.iphone_2:
+  name:
+  platform: plex
+  unique_id: 6E0EF61D-5CC9-47DA-B155-02257782B8AD
+media_player.chrome_2:
+  name:
+  platform: plex
+  unique_id: 78t38qnagk54w6g0i9lb1ou3
+media_player.bedroom_tv_2:
+  name:
+  platform: cast
+  unique_id: 8adaf376-af11-507e-5f76-733ef3382495
+media_player.safari:
+  name:
+  platform: plex
+  unique_id: gzx5bckixaaghujdsw3mnbow
+media_player.rumpus_tv:
+  name:
+  platform: cast
+  unique_id: dc23870e-2bc1-329f-9b4c-799d5bedfa1a
+media_player.whole_house:
+  name:
+  platform: cast
+  unique_id: e406bf13-4727-4405-9324-04dbac1beb37
