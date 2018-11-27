@@ -10,3 +10,4 @@ washing_machine_cycle:
 bedroom_motion_sensor:
   name: Motion Sensor
   initial: on
+vacuum_cycle:

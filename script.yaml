@@ -2,36 +2,36 @@ manual_speedtest:
   alias: Update Now
   sequence:
     - service: sensor.update_speedtest
-sexy_time:
-  alias: Sexy Time
-  sequence:
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.bedroom
-        media_content_type: video/mp4
-        media_content_id: http://lglen.com/video/fire.mp4
-    - service: light.turn_on
-      data:
-        entity_id: light.bedroom
-        brightness: 25
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.sexy_time
-fireplace:
-  alias: Fireplace
-  sequence:
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.living_room_tv
-        media_content_type: video/mp4
-        media_content_id: http://lglen.com/video/fire.mp4
-fishtank:
-  alias: Fish Tank
-  sequence:
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.living_room_tv
-        media_content_type: video/mp4
-        media_content_id: http://lglen.com/video/fish.mp4
+# sexy_time:
+#   alias: Sexy Time
+#   sequence:
+#     - service: media_player.play_media
+#       data:
+#         entity_id: media_player.bedroom
+#         media_content_type: video/mp4
+#         media_content_id: http://lglen.com/video/fire.mp4
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.bedroom
+#         brightness: 25
+#     - service: homeassistant.turn_on
+#       entity_id: input_boolean.sexy_time
+# fireplace:
+#   alias: Fireplace
+#   sequence:
+#     - service: media_player.play_media
+#       data:
+#         entity_id: media_player.living_room_tv
+#         media_content_type: video/mp4
+#         media_content_id: http://lglen.com/video/fire.mp4
+# fishtank:
+#   alias: Fish Tank
+#   sequence:
+#     - service: media_player.play_media
+#       data:
+#         entity_id: media_player.living_room_tv
+#         media_content_type: video/mp4
+#         media_content_id: http://lglen.com/video/fish.mp4
 hallway_1_timer:
   alias: Hallway 1 timer
   sequence:
@@ -52,28 +52,28 @@ clear_logs:
   sequence:
     service: shell_command.clear_logs
 vacuum_room:
-    alias: "Start cleaning"
-    sequence:
-      - service: script.turn_on
-        data_template:
-          entity_id: >
-            {% if is_state("input_select.vacuum_room", "Whole house") %}
-              script.vacuum_whole_house
-            {% elif is_state("input_select.vacuum_room", "Kitchen") %}
-              script.vacuum_living_room
-            {% endif %}
+  alias: "Start cleaning"
+  sequence:
+    - service: script.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.vacuum_room", "Whole house") %}
+            script.vacuum_whole_house
+          {% elif is_state("input_select.vacuum_room", "Kitchen") %}
+            script.vacuum_living_room
+          {% endif %}
 vacuum_whole_house:
-      alias: "Vacuum whole house"
-      sequence:
-        - service: vacuum.turn_on
-          data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+    alias: "Vacuum whole house"
+    sequence:
+      - service: vacuum.turn_on
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
 vacuum_kitchen:
-      alias: "Vacuum kitchen"
-      sequence:
-        - service: vacuum.turn_on
-          data:
-            entity_id: vacuum.xiaomi_vacuum_cleaner
+    alias: "Vacuum kitchen"
+    sequence:
+      - service: vacuum.turn_on
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
 # Below is the script to clean actual zones
 # vacuum_kitchen:
 #       alias: "Vacuum the kitchen"
@@ -86,6 +86,6 @@ vacuum_kitchen:
 stop_vacuum:
   alias: "Stop cleaning"
   sequence:
-    - service: vacuum.return_to_home
+    - service: vacuum.return_to_base
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner

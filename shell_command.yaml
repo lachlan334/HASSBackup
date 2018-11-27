@@ -7,7 +7,7 @@ restart_ibeacon: 'sudo /bin/hciconfig hci0 up | sudo /bin/hciconfig hci0 leadv 3
 # Set status of fake device trackers
 # Shell scripts used as the shell_command component doesn't seem to be able to handle single apostrophes as part of the command.
 # I can't share the scripts as they contain my API password and URL, use a variation of the below
-# 'curl -X POST -H "x-ha-access: HASS-PASSWORD" -H "Content-Type: application/json" -d "{"state":"home","attributes":{"friendly_name":"Lachlan","entity_picture":"/local/lachlan.jpg"}}" https://HASS-URL/api/states/device_tracker.lachlan'
+# 'curl -X POST -H "x-ha-access: <HASS-PASSWORD>" -H "Content-Type: application/json" -d "{"state":"home","attributes":{"friendly_name":"Lachlan","entity_picture":"/local/lachlan.jpg"}}" https://<HASS-URL>/api/states/device_tracker.lachlan'
 set_lachlan_home: /home/homeassistant/.homeassistant/shell_scripts/set_lachlan_home.sh
 set_lachlan_away: /home/homeassistant/.homeassistant/shell_scripts/set_lachlan_away.sh
 set_ashlee_home: /home/homeassistant/.homeassistant/shell_scripts/set_ashlee_home.sh

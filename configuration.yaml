@@ -125,6 +125,19 @@ notify:
     name: HTML5
     gcm_api_key: !secret gcm_api_key
     gcm_sender_id: !secret gcm_sender_id
+  - name: lachlan
+    platform: group
+    services:
+      - service: pushbullet
+        data:
+          target: 'channel/mcphillips-rd'
+  - name: all
+    platform: group
+    services:
+      - service: pushbullet
+        data:
+          target: 'channel/mcphillips-rd'
+      - service: ios_ashlee_ashlee
 # Input sliders
 input_number:
   bedroom_brightness:
