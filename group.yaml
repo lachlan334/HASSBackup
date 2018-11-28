@@ -66,6 +66,22 @@ speedtest:
     - sensor.speedtest_ping
     - sensor.speedtest_download
     - sensor.speedtest_upload
+media:
+  name: Media
+  view: yes
+  entities:
+    - group.living_room_media
+    - group.bedroom_media
+living_room_media:
+  name: Living Room
+  entities:
+    - media_player.living_room_tv
+    - media_player.living_room_speaker
+bedroom_media:
+  name: Bedroom
+  entities:
+    - media_player.bedroom_tv_2
+    - media_player.bedroom_speaker
 # scenes:
 #   name: Scenes
 #   view: yes

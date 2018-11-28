@@ -4,6 +4,9 @@
 # Bedroom Chromecast
 - platform: cast
   host: 192.168.0.6
-# Google Home
+# Google Home (living room)
 - platform: cast
   host: 192.168.0.7
+# Google Home (bedroom)
+- platform: cast
+  host: 192.168.0.8

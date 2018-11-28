@@ -10,15 +10,18 @@ sensor.speedtest_upload:
 sensor.speedtest_ping:
   friendly_name: Ping
   icon: mdi:radio-tower
-sensor.disk_used_:
+sensor.disk_use_percent_:
   friendly_name: Disk Use
-sensor.sent_eth0:
+sensor.memory_use_percent:
+  friendly_name: RAM Used
+sensor.network_out_eth0:
   friendly_name: Sent
   icon: mdi:upload-network
-sensor.received_eth0:
+sensor.network_in_eth0:
   friendly_name: Received
   icon: mdi:download-network
-sensor.cpu_used:
+sensor.processor_use:
+  friendly_name: Processor Use
   icon: mdi:raspberrypi
 sensor.last_boot:
   icon: mdi:calendar-clock

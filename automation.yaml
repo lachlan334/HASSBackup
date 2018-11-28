@@ -553,6 +553,10 @@
     platform: state
     entity_id: group.family
     to: 'home'
+  condition:
+    condition: state
+    entity_id: sensor.vacuum_status
+    state: 'Cleaning'
   action:
     service: vacuum.return_to_base
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -572,6 +576,8 @@
     platform: state
     entity_id: group.family
     to: 'home'
+    for:
+      minutes: 2
   condition:
     condition: state
     entity_id: input_boolean.vacuum_cycle
